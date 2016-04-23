@@ -20,7 +20,7 @@ class _ChoicesMeta(type):
         """
         Provides 'in' ability
         """
-        for x in self.items():
+        for x in self._items:
             yield x[0]
 
 
@@ -64,11 +64,15 @@ class Choices(object):
     def values(cls):
         return tuple(item[1] for item in cls.items())
 
+    @classmethod
+    def get(cls, name):
+        return next((key for key in cls.keys() if key == name), None)
+
 
 class Options(object):
     def __init__(self, **kwargs):
         self._kwargs = kwargs
-        for key, value in kwargs.items():
+        for key, value in six.iteritems(kwargs):
             setattr(self, key, value)
 
     def __getattr__(self, _):

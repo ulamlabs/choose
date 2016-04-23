@@ -1,11 +1,14 @@
+import os
 from setuptools import setup, find_packages
 
+with open(os.path.join(os.path.dirname(__file__), 'README.md')) as f:
+    readme = f.read()
 
 setup(
     name='choose',
-    version='0.1',
+    version='0.2.7',
     description='Choices on steroids',
-    long_description=open('README.md').read(),
+    long_description=readme,
     url='http://github.com/krotkiewicz/choose',
     author='Konrad Rotkiewicz',
     author_email='konrad.rotkiewicz@gmail.com',
