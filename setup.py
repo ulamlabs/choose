@@ -6,7 +6,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as f:
 
 setup(
     name='choose',
-    version='0.2.7',
+    version='0.2.8',
     description='Choices on steroids',
     long_description=readme,
     url='http://github.com/krotkiewicz/choose',
@@ -16,7 +16,7 @@ setup(
         'six>=1.10.0',
     ],
     license='BSD',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     test_suite="tests",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
