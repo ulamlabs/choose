@@ -3,6 +3,12 @@ Choices on steroids
 
 [![Build](https://api.travis-ci.org/krotkiewicz/choose.svg)](https://travis-ci.org/krotkiewicz/choose)
 
+How to install:
+
+```python
+    pip install choose
+```
+
 Basic usage:
 
 ```python
