@@ -86,3 +86,9 @@ def test_copy():
     TWO_copied = copy.deepcopy(TestChoices.TWO)
     assert TWO_copied == TestChoices.TWO
     assert TWO_copied.opt == 2
+
+
+def test_get():
+    assert TestChoices.get('one') == TestChoices.ONE
+    assert TestChoices.get('two') == TestChoices.TWO
+    assert TestChoices.get('three').opt == 3
