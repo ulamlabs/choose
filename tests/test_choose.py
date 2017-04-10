@@ -1,3 +1,5 @@
+import copy
+
 import choose
 
 
@@ -69,3 +71,18 @@ def test_no_text():
     assert TestChoices2.ONE.foo == 1
     assert TestChoices2.TWO.bar == 2
     assert TestChoices2.THREE.baz == 3
+
+
+def test_in():
+    assert 'one' in TestChoices
+    assert 'one2' not in TestChoices
+
+
+def test_copy():
+    ONE_copied = copy.copy(TestChoices.ONE)
+    assert ONE_copied == TestChoices.ONE
+    assert ONE_copied.opt == 1
+
+    TWO_copied = copy.deepcopy(TestChoices.TWO)
+    assert TWO_copied == TestChoices.TWO
+    assert TWO_copied.opt == 2
