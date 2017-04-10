@@ -46,9 +46,9 @@ class Choices(object):
     >>> class Types2(Choices):
     >>>     BAR = Choice('foo_bar', 'Foo Bar', extra_attr='x')
     >>>     BAZ = Choice('foo_baz', 'Foo Baz', extra_attr='y')
-    >>> Types2.BAR.opts.extra_attr
+    >>> Types2.BAR.extra_attr
     'x'
-    >>> Types2.BAR.opts.not_existing_attr is None
+    >>> Types2.BAR.not_existing_attr is None
     True
     """
 
@@ -69,23 +69,14 @@ class Choices(object):
         return next((key for key in cls.keys() if key == name), None)
 
 
-class Options(object):
-    def __init__(self, **kwargs):
-        self._kwargs = kwargs
-        for key, value in six.iteritems(kwargs):
-            setattr(self, key, value)
-
-    def __getattr__(self, _):
-        return None
-
-
 class Choice(str):
     _counter = itertools.count()
 
-    def __new__(cls, choice, text, **kwargs):
+    def __new__(cls, choice, text=None, **kwargs):
         obj = str.__new__(cls, choice)
         obj.text = text
-        obj.opts = Options(**kwargs)
+        for k, v in six.iteritems(kwargs):
+            setattr(obj, k, v)
         return obj
 
     def __init__(self, *args, **kwargs):
@@ -94,7 +85,10 @@ class Choice(str):
 
     def __copy__(self):
         cls = self.__class__
-        return cls(str(self), self.text, **self.opts._kwargs)
+        return cls(str(self), **self.__dict__)
+
+    def __getattr__(self, _):
+        return None
 
     def __deepcopy__(self, _):
         return self.__copy__()

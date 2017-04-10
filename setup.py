@@ -1,15 +1,15 @@
 import os
 from setuptools import setup, find_packages
 
-with open(os.path.join(os.path.dirname(__file__), 'README.md')) as f:
+with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as f:
     readme = f.read()
 
 setup(
     name='choose',
-    version='0.2.8',
+    version='1.0.0',
     description='Choices on steroids',
     long_description=readme,
-    url='http://github.com/krotkiewicz/choose',
+    url='http://github.com/ulamlabs/choose',
     author='Konrad Rotkiewicz',
     author_email='konrad.rotkiewicz@gmail.com',
     install_requires=[
