@@ -4,9 +4,18 @@ import choose
 
 
 class TestChoices(choose.Choices):
-    ONE = choose.Choice('one', 'One', opt=1, onlyone='onlyone')
-    TWO = choose.Choice('two', 'Two', opt=2)
-    THREE = choose.Choice('three', 'Three', opt=3, onlythree='onlythree')
+    ONE = choose.Choice(
+        'one', 'One',
+        opt=1, onlyone='onlyone', onlythree=None,
+    )
+    TWO = choose.Choice(
+        'two', 'Two',
+        opt=2, onlyone=None, onlythree=None,
+    )
+    THREE = choose.Choice(
+        'three', 'Three',
+        opt=3, onlythree='onlythree', onlyone=None,
+    )
 
 
 class TestChoices2(choose.Choices):
@@ -52,10 +61,6 @@ def test_opts():
     assert TestChoices.ONE.onlythree is None
     assert TestChoices.TWO.onlythree is None
     assert TestChoices.THREE.onlythree == 'onlythree'
-
-    assert TestChoices.ONE.otheropt is None
-    assert TestChoices.TWO.otheropt is None
-    assert TestChoices.THREE.otheropt is None
 
 
 def test_no_text():

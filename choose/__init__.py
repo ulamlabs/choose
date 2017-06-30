@@ -87,8 +87,5 @@ class Choice(str):
         cls = self.__class__
         return cls(str(self), **self.__dict__)
 
-    def __getattr__(self, _):
-        return None
-
     def __deepcopy__(self, _):
         return self.__copy__()
